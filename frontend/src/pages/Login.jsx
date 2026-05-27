@@ -16,26 +16,49 @@ function Login() {
   };
 
   return (
-    <div className="auth-page">
-      <form className="auth-card" onSubmit={handleSubmit}>
-        <h1>GeoPhotoMap</h1>
-        <h2>Login</h2>
+    <div className="auth-page premium-auth">
+      <div className="auth-hero">
+        <div className="glass-card">
+          <span className="brand-badge">GeoPhotoMap</span>
+          <h1>Turn your photos into a living map.</h1>
+          <p>
+            Upload geotagged pictures, explore memories by location, and
+            collaborate through comments.
+          </p>
 
+          <div className="feature-list">
+            <span>Interactive map</span>
+            <span>Photo uploads</span>
+            <span>Comments</span>
+            <span>AI-ready descriptions</span>
+          </div>
+        </div>
+      </div>
+
+      <form className="auth-card premium-card" onSubmit={handleSubmit}>
+        <h2>Welcome back</h2>
+        <p className="auth-subtitle">Login to continue exploring your map.</p>
+
+        <label>Email</label>
         <input
-          placeholder="Email"
+          placeholder="Enter your email"
+          type="email"
+          required
           onChange={(e) => setForm({ ...form, email: e.target.value })}
         />
 
+        <label>Password</label>
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Enter your password"
+          required
           onChange={(e) => setForm({ ...form, password: e.target.value })}
         />
 
         <button>Login</button>
 
-        <p>
-          Don’t have an account? <Link to="/signup">Sign up</Link>
+        <p className="auth-switch">
+          New here? <Link to="/signup">Create an account</Link>
         </p>
       </form>
     </div>

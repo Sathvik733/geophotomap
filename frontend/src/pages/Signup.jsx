@@ -15,29 +15,42 @@ function Signup() {
 
   return (
     <div className="auth-page">
+      <div className="auth-left">
+        <span className="brand-badge">GeoPhotoMap</span>
+        <h1>Start building your visual travel map.</h1>
+        <p>
+          Create an account, upload photos with coordinates, and visualize every
+          memory on an interactive map.
+        </p>
+      </div>
+
       <form className="auth-card" onSubmit={handleSubmit}>
-        <h1>GeoPhotoMap</h1>
-        <h2>Create Account</h2>
+        <h2>Create account</h2>
+        <p className="auth-subtitle">Join and start uploading geotagged photos.</p>
 
         <input
-          placeholder="Name"
+          placeholder="Full name"
+          required
           onChange={(e) => setForm({ ...form, name: e.target.value })}
         />
 
         <input
-          placeholder="Email"
+          placeholder="Email address"
+          type="email"
+          required
           onChange={(e) => setForm({ ...form, email: e.target.value })}
         />
 
         <input
           type="password"
           placeholder="Password"
+          required
           onChange={(e) => setForm({ ...form, password: e.target.value })}
         />
 
         <button>Sign Up</button>
 
-        <p>
+        <p className="auth-switch">
           Already have an account? <Link to="/">Login</Link>
         </p>
       </form>

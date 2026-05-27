@@ -49,40 +49,31 @@ function PhotoPopup({ photo }) {
 
       <h3>Uploaded Photo</h3>
 
-      <p className="popup-user">
-        Uploaded by {photo.name}
-      </p>
+      <p className="popup-user">Uploaded by {photo.name}</p>
 
-      <div>
-        <p>{photo.description}</p>
+      <p>{photo.description}</p>
 
-        {photo.description.includes("AI description") && (
-          <span
-            style={{
-              fontSize: "12px",
-              color: "#2563eb",
-              fontWeight: "600",
-            }}
-          >
-            Auto-generated description
-          </span>
-        )}
-      </div>
+      {photo.description?.includes("Auto-generated placeholder") && (
+        <span
+          style={{
+            fontSize: "12px",
+            color: "#2563eb",
+            fontWeight: "600",
+          }}
+        >
+          Auto-generated description
+        </span>
+      )}
 
       <div className="comments-section">
         <h4>Comments</h4>
 
         <div className="comments-list">
           {comments.length === 0 ? (
-            <p className="empty-comment">
-              No comments yet.
-            </p>
+            <p className="empty-comment">No comments yet.</p>
           ) : (
             comments.map((comment) => (
-              <div
-                key={comment.id}
-                className="comment-box"
-              >
+              <div key={comment.id} className="comment-box">
                 <strong>{comment.name}</strong>
                 <p>{comment.comment}</p>
               </div>
@@ -93,16 +84,11 @@ function PhotoPopup({ photo }) {
         <input
           placeholder="Write a comment..."
           value={newComment}
-          onChange={(e) =>
-            setNewComment(e.target.value)
-          }
+          onChange={(e) => setNewComment(e.target.value)}
           className="comment-input"
         />
 
-        <button
-          onClick={addComment}
-          className="small-btn"
-        >
+        <button onClick={addComment} className="small-btn">
           Add Comment
         </button>
       </div>
@@ -112,6 +98,7 @@ function PhotoPopup({ photo }) {
 
 function Dashboard() {
   const [photos, setPhotos] = useState([]);
+  const [loadingLocation, setLoadingLocation] = useState(false);
 
   const [form, setForm] = useState({
     latitude: "",
@@ -128,6 +115,31 @@ function Dashboard() {
   useEffect(() => {
     fetchPhotos();
   }, []);
+
+  const detectLocation = () => {
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported");
+      return;
+    }
+
+    setLoadingLocation(true);
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setForm((prev) => ({
+          ...prev,
+          latitude: position.coords.latitude.toFixed(6),
+          longitude: position.coords.longitude.toFixed(6),
+        }));
+
+        setLoadingLocation(false);
+      },
+      () => {
+        alert("Unable to fetch location");
+        setLoadingLocation(false);
+      }
+    );
+  };
 
   const handleUpload = async (e) => {
     e.preventDefault();
@@ -156,10 +168,8 @@ function Dashboard() {
       <header className="dashboard-header">
         <div>
           <h1>GeoPhotoMap</h1>
-
           <p>
-            Upload geotagged photos and explore
-            them on an interactive map.
+            Upload geotagged photos and explore them on an interactive map.
           </p>
         </div>
 
@@ -177,16 +187,9 @@ function Dashboard() {
       <main className="dashboard-layout">
         <section className="upload-card">
           <h2>Upload Photo</h2>
+          <p>Add an image with latitude and longitude.</p>
 
-          <p>
-            Add an image with latitude and
-            longitude.
-          </p>
-
-          <form
-            onSubmit={handleUpload}
-            className="upload-form"
-          >
+          <form onSubmit={handleUpload} className="upload-form">
             <input
               placeholder="Latitude, example: 48.8566"
               value={form.latitude}
@@ -211,6 +214,14 @@ function Dashboard() {
               required
             />
 
+            <button
+              type="button"
+              onClick={detectLocation}
+              className="small-btn"
+            >
+              {loadingLocation ? "Detecting..." : "Use Current Location"}
+            </button>
+
             <input
               placeholder="Description"
               value={form.description}
@@ -234,17 +245,13 @@ function Dashboard() {
               required
             />
 
-            <button
-              type="submit"
-              className="primary-btn"
-            >
+            <button type="submit" className="primary-btn">
               Upload Photo
             </button>
           </form>
 
           <div className="stats-box">
             <span>{photos.length}</span>
-
             <p>Total photos uploaded</p>
           </div>
         </section>
@@ -263,10 +270,7 @@ function Dashboard() {
             {photos.map((photo) => (
               <Marker
                 key={photo.id}
-                position={[
-                  photo.latitude,
-                  photo.longitude,
-                ]}
+                position={[photo.latitude, photo.longitude]}
               >
                 <Popup>
                   <PhotoPopup photo={photo} />

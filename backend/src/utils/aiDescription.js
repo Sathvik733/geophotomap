@@ -1,9 +1,9 @@
 async function generateImageDescription(filePath, manualDescription) {
   if (manualDescription && manualDescription.trim()) {
-    return manualDescription;
+    return manualDescription.trim();
   }
 
-  return "AI description placeholder: A geotagged image uploaded by the user.";
+  return "Auto-generated placeholder: This image was uploaded without a manual description.";
 }
 
 module.exports = generateImageDescription;

@@ -9,44 +9,81 @@ body {
   color: #172033;
 }
 
+/* AUTH PAGES */
+
 .auth-page {
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 420px;
   background: linear-gradient(135deg, #dbeafe, #f8fafc);
 }
 
-.auth-card {
-  width: 380px;
-  background: white;
-  padding: 32px;
-  border-radius: 20px;
-  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12);
+.auth-left {
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.auth-card h1 {
-  margin: 0;
+.brand-badge {
+  width: fit-content;
+  padding: 10px 18px;
+  background: rgba(37, 99, 235, 0.12);
   color: #2563eb;
+  border-radius: 999px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.auth-left h1 {
+  font-size: 56px;
+  line-height: 1.1;
+  margin: 0;
+  max-width: 520px;
+}
+
+.auth-left p {
+  margin-top: 24px;
+  max-width: 500px;
+  color: #5b6475;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.auth-card {
+  background: white;
+  padding: 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: -10px 0 30px rgba(15, 23, 42, 0.05);
 }
 
 .auth-card h2 {
-  margin-top: 8px;
+  margin: 0;
+  font-size: 32px;
 }
 
-.auth-card input,
-.upload-form input,
-.comment-input {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid #d7deea;
-  border-radius: 12px;
-  outline: none;
-  font-size: 14px;
+.auth-subtitle {
+  color: #64748b;
+  margin-top: 10px;
+  margin-bottom: 28px;
 }
 
 .auth-card input {
-  margin-bottom: 12px;
+  width: 100%;
+  padding: 15px 16px;
+  border: 1px solid #dbe2ea;
+  border-radius: 14px;
+  margin-bottom: 16px;
+  outline: none;
+  font-size: 15px;
+  transition: 0.2s;
+}
+
+.auth-card input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
 }
 
 .auth-card button,
@@ -55,17 +92,39 @@ body {
 .small-btn {
   border: none;
   cursor: pointer;
-  border-radius: 12px;
   font-weight: 700;
+  transition: 0.2s;
 }
 
-.auth-card button,
-.primary-btn {
+.auth-card button {
   width: 100%;
-  padding: 13px;
+  padding: 15px;
+  border-radius: 14px;
   background: #2563eb;
   color: white;
+  font-size: 15px;
+  margin-top: 8px;
 }
+
+.auth-card button:hover,
+.primary-btn:hover,
+.small-btn:hover {
+  opacity: 0.92;
+}
+
+.auth-switch {
+  margin-top: 18px;
+  color: #64748b;
+  text-align: center;
+}
+
+.auth-switch a {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* DASHBOARD */
 
 .dashboard-page {
   min-height: 100vh;
@@ -94,6 +153,7 @@ body {
   background: #ef4444;
   color: white;
   padding: 12px 18px;
+  border-radius: 12px;
 }
 
 .dashboard-layout {
@@ -127,6 +187,24 @@ body {
   gap: 12px;
 }
 
+.upload-form input,
+.comment-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d7deea;
+  border-radius: 12px;
+  outline: none;
+  font-size: 14px;
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 13px;
+  border-radius: 12px;
+  background: #2563eb;
+  color: white;
+}
+
 .stats-box {
   margin-top: 22px;
   padding: 18px;
@@ -155,8 +233,11 @@ body {
   border-radius: 18px;
 }
 
+/* POPUP */
+
 .popup-card {
   width: 170px;
+  padding: 2px;
 }
 
 .popup-image {
@@ -167,13 +248,14 @@ body {
 }
 
 .popup-card h3 {
-  margin: 10px 0 4px;
+  margin: 8px 0 4px;
+  font-size: 14px;
 }
 
 .popup-user,
 .empty-comment {
   color: #64748b;
-  font-size: 13px;
+  font-size: 11px;
 }
 
 .comments-section {
@@ -183,43 +265,35 @@ body {
 }
 
 .comments-list {
-  max-height: 130px;
+  max-height: 90px;
   overflow-y: auto;
 }
 
 .comment-box {
   background: #f8fafc;
-  padding: 8px;
-  border-radius: 10px;
-  margin-bottom: 8px;
+  padding: 6px;
+  border-radius: 8px;
+  margin-bottom: 6px;
 }
 
 .comment-box p {
-  margin: 4px 0 0;
+  margin: 3px 0 0;
+  font-size: 11px;
+}
+
+.comment-input {
+  margin-top: 6px;
+  font-size: 12px;
 }
 
 .small-btn {
   width: 100%;
-  margin-top: 8px;
-  padding: 10px;
+  margin-top: 6px;
+  padding: 8px;
+  border-radius: 10px;
   background: #2563eb;
   color: white;
-}
-
-@media (max-width: 900px) {
-  .dashboard-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .dashboard-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
-  }
-
-  .map-container {
-    height: 520px;
-  }
+  font-size: 12px;
 }
 
 .leaflet-popup-content-wrapper {
@@ -234,4 +308,112 @@ body {
 
 .leaflet-popup-tip {
   background: white;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .auth-page {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-left {
+    padding: 40px 30px 10px;
+  }
+
+  .auth-left h1 {
+    font-size: 40px;
+  }
+
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .map-container {
+    height: 520px;
+  }
+}
+.premium-auth {
+  grid-template-columns: 1.2fr 430px;
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.28), transparent 35%),
+    linear-gradient(135deg, #0f172a, #1e3a8a 45%, #eff6ff);
+}
+
+.auth-hero {
+  padding: 70px;
+  display: flex;
+  align-items: center;
+}
+
+.glass-card {
+  max-width: 620px;
+  padding: 46px;
+  border-radius: 34px;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(18px);
+  color: white;
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.28);
+}
+
+.glass-card h1 {
+  font-size: 58px;
+  line-height: 1.05;
+  margin: 24px 0;
+}
+
+.glass-card p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #dbeafe;
+}
+
+.feature-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.feature-list span {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.premium-card label {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #334155;
+}
+
+.premium-card {
+  border-radius: 30px 0 0 30px;
+}
+
+@media (max-width: 900px) {
+  .premium-auth {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-hero {
+    padding: 30px;
+  }
+
+  .glass-card h1 {
+    font-size: 38px;
+  }
+
+  .premium-card {
+    border-radius: 30px 30px 0 0;
+  }
 }
