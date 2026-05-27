@@ -222,6 +222,11 @@ OPENAI_API_KEY=
 ```
 
 ---
+## AI Note
+
+The current MVP includes an AI-ready architecture with placeholder auto-generated descriptions.
+
+The utility service is modular and can be directly connected to OpenAI Vision API by providing a valid `OPENAI_API_KEY`.
 
 # Future Improvements
 
